@@ -2,8 +2,10 @@ html {
     font-family: 'Nova Square', cursive;
 }
 #container {
-    width: 100vw;
-    max-width: 329px;
+    width: 100%;
+}
+#calculator {
+    width: 369px;
     border-style: solid;
     border-color: #555;
     border-width: 3px;
@@ -14,7 +16,7 @@ html {
 #grid-container {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 80px 80px 80px 80px;
+    grid-template-rows: 90px 90px 90px 90px;
     grid-gap: 3px;
 }
 #output-screen {

@@ -44,8 +44,30 @@ let display_value = "";
 btns = document.querySelectorAll('.value-btn');
 btns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
+        
+        // checking if there already is a decimal point
+        if(e.target.value === '.') {
+            let array = display_value.split(' ');
+            console.log(array);
+            if(array.length === 3) {
+                if(array[0].includes('.') && array[2].includes('.')) {
+                    return;
+                } else {
+                    display_value += e.target.value;
+                    update_display(display_value);
+                }
+            } else if(array.length < 3) {
+                if(array[0].includes('.')) {
+                    return;
+                } else {
+                    display_value += e.target.value;
+                    update_display(display_value);
+                }
+            }
+        } else {
         display_value += e.target.value;
         update_display(display_value);
+        }
     });
 });
 
