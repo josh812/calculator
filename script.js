@@ -106,7 +106,7 @@ function value_event_function(value) {
     if(value === '.') {
         let array = display_value.split(' ');
         if(array.length === 3) {
-            if(array[0].includes('.') && array[2].includes('.')) {
+            if(array[2].includes('.')) {
                 return;
             } else {
                 display_value += value;
