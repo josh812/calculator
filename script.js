@@ -33,7 +33,7 @@ function operate(val1, operator, val2) {
     } else if(operator === '/') {
         answer = divide(val1, val2);
     }
-    return answer;
+    return Math.round(answer * 10000) / 10000;
 }
 
 
@@ -47,7 +47,7 @@ let display_value = "";
 btns = document.querySelectorAll('.value-btn');
 btns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        value_event_function(e.target.value);
+        valueEventFunction(e.target.value);
     });
 });
 
@@ -55,13 +55,13 @@ btns.forEach((btn) => {
 operators = document.querySelectorAll('.operator');
 operators.forEach((operator) => {
     operator.addEventListener('click', (e) => {
-        operator_event_function(e.target.value);
+        operatorEventFunction(e.target.value);
     })
 });
 
 
 equal_key.addEventListener('click', function() {
-    update_display(operate_string(display_value));
+    updateDisplay(operateString(display_value));
 });
 
 
@@ -74,13 +74,13 @@ document.addEventListener('keydown', (e) => {
     let array_of_digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 
     if(e.key === '+' || e.key === '-' || e.key === '/' || e.key === '*') { // if you pressed an operator
-        operator_event_function(' ' + e.key + ' ');
+        operatorEventFunction(' ' + e.key + ' ');
     } else if(e.key === 'x') {
-        operator_event_function(' * ');
+        operatorEventFunction(' * ');
     } else if(array_of_digits.includes(e.key)) { // if you pressed a number
-        value_event_function(e.key);
+        valueEventFunction(e.key);
     } else if(e.key === '=') { // Equals key
-        update_display(operate_string(display_value));
+        updateDisplay(operateString(display_value));
     } else if(e.key === 'Backspace') { // AC key
         display_value = "";
         calc_display.value = "0";
@@ -89,11 +89,11 @@ document.addEventListener('keydown', (e) => {
 
 
 
-function update_display(display_value) {
+function updateDisplay(display_value) {
     calc_display.value = display_value;
 }
 
-function operate_string(display_value) {
+function operateString(display_value) {
     let values = display_value.split(' ');
     let output = "";
     output = operate(values[0], values[1], values[2]);
@@ -101,7 +101,7 @@ function operate_string(display_value) {
     return display_value;
 }
 
-function value_event_function(value) {
+function valueEventFunction(value) {
     // checking if there already is a decimal point
     if(value === '.') {
         let array = display_value.split(' ');
@@ -110,28 +110,28 @@ function value_event_function(value) {
                 return;
             } else {
                 display_value += value;
-                update_display(display_value);
+                updateDisplay(display_value);
             }
         } else if(array.length < 3) {
             if(array[0].includes('.')) {
                 return;
             } else {
                 display_value += value;
-                update_display(display_value);
+                updateDisplay(display_value);
             }
         }
     } else {
     display_value += value;
-    update_display(display_value);
+    updateDisplay(display_value);
     }
 }
 
-function operator_event_function(value) {
+function operatorEventFunction(value) {
     if(display_value.includes('+') || display_value.includes('-') || display_value.includes('*') || display_value.includes('/')) {
-        display_value = operate_string(display_value) + value;
-        update_display(display_value);
+        display_value = operateString(display_value) + value;
+        updateDisplay(display_value);
     } else {
         display_value += value;
-        update_display(display_value);
+        updateDisplay(display_value);
     }
 }
