@@ -1,9 +1,6 @@
 html {
     font-family: 'Nova Square', cursive;
 }
-#container {
-    width: 100%;
-}
 #calculator {
     width: 369px;
     border-style: solid;
@@ -12,6 +9,8 @@ html {
     border-radius: 10px;
     background-color: #79a4f9;
     padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 #grid-container {
     display: grid;
